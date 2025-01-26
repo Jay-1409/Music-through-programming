@@ -1,4 +1,4 @@
-function S = squarewave(t, f1)
+function S = waveSquare(t, f1)
     A1 = 1.27324; 
     A2 = 0.424413;
     A3 = 0.254648;
