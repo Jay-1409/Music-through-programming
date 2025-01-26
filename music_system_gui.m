@@ -89,10 +89,7 @@ function playSound(waveformDropdown, envelopeDropdown)
         x = [S, R, G, R, G, M, P, M, P, D, P, D, N, D, N, St];
         y = [St, N, D, N, D, P, D, P, M, P, M, G, R, G, R, S];
         soundSequence = [x, y];
-        delay = 0;
-        for i = [0:1000000]
-            delay = delay + 1;
-        end
+        pause(1);
         sound(soundSequence, Fs);
         disp('Playback complete.');
     else
