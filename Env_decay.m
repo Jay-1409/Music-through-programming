@@ -1,4 +1,4 @@
-function En = Env(t)
+function En = Env_decay(t)
     tlen = length(t);
     T1 = round(0.02 * tlen); %Generate the samples for attack -> the number of samples 
     T2 = round(0.04 * tlen); %small sustain 
