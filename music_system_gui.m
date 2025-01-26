@@ -77,6 +77,11 @@ function playSound(waveformDropdown, envelopeDropdown)
         soundSequence = [x, y];
         sound(soundSequence, Fs);
         choosenWave = 3;
+        if choosenEnv == 1
+            choosenEnv = 0;
+        else
+            choosenEnv = 1;
+        end
         S = Note(2, 0, T, f, choosenWave, choosenEnv);
        St = Note(3, 0, T, f, choosenWave, choosenEnv);
         R = Note(2, 2, T, f, choosenWave, choosenEnv);

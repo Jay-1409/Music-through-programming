@@ -2,9 +2,9 @@ function En = Env_decay(t)
     tlen = length(t);
     T1 = round(0.02 * tlen); %Generate the samples for attack -> the number of samples 
     T2 = round(0.04 * tlen); %small sustain 
-    T3 = round(0.88 * tlen); %sustain 
+    T3 = round(0.60 * tlen); %sustain 
     T4 = round(0.02 * tlen); %release
-    T5 = round(0.04 * tlen); %decay 
+    T5 = round(0.22 * tlen); %decay 
     % we need to do the rounding since it will accept only the integer
     % arguments
     L1 = linspace(0,1,T1);
