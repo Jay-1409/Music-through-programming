@@ -5,7 +5,7 @@ function music_system_gui()
     % Dropdown for waveform selection
     uilabel(fig, 'Position', [20 240 200 30], 'Text', 'Choose a waveform to play:');
     waveformDropdown = uidropdown(fig, 'Position', [20 210 200 30], ...
-        'Items', {'Sine Wave', 'Sawtooth Wave', 'Square Wave', 'Custom Wave'}, ...
+        'Items', {'Sine Wave', 'Sawtooth Wave', 'Square Wave', 'Custom Wave1','Custom Wave2'}, ...
         'Value', 'Sine Wave');
 
     % Dropdown for envelope effect selection
@@ -40,8 +40,11 @@ function playSound(waveformDropdown, envelopeDropdown)
         case 'Square Wave'
             choosenWave = 3;
             disp('Playing: Square Wave');
-        case 'Custom Wave'
+        case 'Custom Wave1'
             choosenWave = 4;
+            disp('Playing: Custom Wave');
+        case 'Custom Wave2'            
+            choosenWave = 5;
             disp('Playing: Custom Wave');
         otherwise
             error('Invalid waveform selection.');
@@ -59,10 +62,7 @@ function playSound(waveformDropdown, envelopeDropdown)
         otherwise
             error('Invalid envelope selection.');
     end
-
-    % Generate notes using NoteG2 function
     if choosenWave == 4
-        choosenWave = 2;
         S = Note(2, 0, T, f, choosenWave, choosenEnv);
        St = Note(3, 0, T, f, choosenWave, choosenEnv);
         R = Note(2, 2, T, f, choosenWave, choosenEnv);
@@ -72,6 +72,22 @@ function playSound(waveformDropdown, envelopeDropdown)
         D = Note(2, 9, T, f, choosenWave, choosenEnv);
         N = Note(2, 11, T, f, choosenWave, choosenEnv);
         % Concatenate note sequences
+        x = [S, R, G, R, G, M, P, M, P, D, P, D, N, D, N, St];
+        y = [St, N, D, N, D, P, D, P, M, P, M, G, R, G, R, S];
+        soundSequence = [x, y];
+        pause(1);
+        sound(soundSequence, Fs);
+        disp('Playback complete.');
+    elseif choosenWave == 5
+        choosenWave = 2;
+        S = Note(2, 0, T, f, choosenWave, choosenEnv);
+       St = Note(3, 0, T, f, choosenWave, choosenEnv);
+        R = Note(2, 2, T, f, choosenWave, choosenEnv);
+        G = Note(2, 4, T, f, choosenWave, choosenEnv);
+        M = Note(2, 6, T, f, choosenWave, choosenEnv);
+        P = Note(2, 7, T, f, choosenWave, choosenEnv);
+        D = Note(2, 9, T, f, choosenWave, choosenEnv);
+        N = Note(2, 11, T, f, choosenWave, choosenEnv);
         x = [S, R, G, R, G, M, P, M, P, D, P, D, N, D, N, St];
         y = [St, N, D, N, D, P, D, P, M, P, M, G, R, G, R, S];
         soundSequence = [x, y];
@@ -101,7 +117,7 @@ function playSound(waveformDropdown, envelopeDropdown)
         S = Note(2, 0, T, f, choosenWave, choosenEnv);
        St = Note(3, 0, T, f, choosenWave, choosenEnv);
         R = Note(2, 2, T, f, choosenWave, choosenEnv);
-        G = Note(2, 4, T, f, choosenWave,    choosenEnv);
+        G = Note(2, 4, T, f, choosenWave, choosenEnv);
         M = Note(2, 6, T, f, choosenWave, choosenEnv);
         P = Note(2, 7, T, f, choosenWave, choosenEnv);
         D = Note(2, 9, T, f, choosenWave, choosenEnv);

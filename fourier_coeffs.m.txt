@@ -1,0 +1,25 @@
+function [A0, An, Bn] = fourier_coeffs(f, T, N)
+% f: the function handle for the waveform (e.g., @sine_wave)
+% T: period of the waveform
+% N: number of Fourier coefficients to compute
+
+% Fundamental frequency
+w0 = 2 * pi / T;
+
+% Calculate A0 (DC component)
+A0 = (1/T) * integral(@(t) f(t), 0, T);
+
+% Preallocate An and Bn arrays
+An = zeros(1, N);
+Bn = zeros(1, N);
+
+% Calculate An and Bn for n = 1 to N
+for n = 1:N
+    % Calculate An
+    An(n) = (2/T) * integral(@(t) f(t) .* cos(n * w0 * t), 0, T);
+    
+    % Calculate Bn
+    Bn(n) = (2/T) * integral(@(t) f(t) .* sin(n * w0 * t), 0, T);
+end
+
+end

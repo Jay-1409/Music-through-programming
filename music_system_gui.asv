@@ -24,9 +24,9 @@ end
 
 function playSound(waveformDropdown, envelopeDropdown)
     % Parameters for wave generation
-    Fs = 44100; % Sampling frequency
-    f = 440;    % Fundamental frequency (A4 note)
-    T = 1;      % Note duration (in seconds)
+    Fs = 22050; % Sampling frequency
+    f = 250;    % Fundamental frequency (A4 note)
+    T = 0.5;      % Note duration (in seconds)
 
     % Determine the selected waveform
     choosenWave = 0;
@@ -60,24 +60,55 @@ function playSound(waveformDropdown, envelopeDropdown)
             error('Invalid envelope selection.');
     end
 
-    % Generate notes using NoteG2 function
-    S = Note(2, 0, T, f, choosenWave, choosenEnv);
-    St = Note(3, 0, T, f, choosenWave, choosenEnv);
-    R = NoteG2(2, 2, T, f, choosenWave, choosenEnv);
-    G = NoteG2(2, 4, T, f, choosenWave, choosenEnv);
-    M = NoteG2(2, 6, T, f, choosenWave, choosenEnv);
-    P = NoteG2(2, 7, T, f, choosenWave, choosenEnv);
-    D = NoteG2(2, 9, T, f, choosenWave, choosenEnv);
-    N = NoteG2(2, 11, T, f, choosenWave, choosenEnv);
-
-    % Concatenate note sequences
-    x = [S, R, G, R, G, M, P, M, P, D, P, D, N, D, N, St];
-    y = [St, N, D, N, D, P, D, P, M, P, M, G, R, G, R, S];
-    soundSequence = [x, y];
-
-    % Play the sound
-    sound(soundSequence, Fs);
-
-    % Confirmation message
-    disp('Playback complete.');
+    if choosenWave == 4
+        choosenWave = 2;
+        S = Note(2, 0, T, f, choosenWave, choosenEnv);
+       St = Note(3, 0, T, f, choosenWave, choosenEnv);
+        R = Note(2, 2, T, f, choosenWave, choosenEnv);
+        G = Note(2, 4, T, f, choosenWave, choosenEnv);
+        M = Note(2, 6, T, f, choosenWave, choosenEnv);
+        P = Note(2, 7, T, f, choosenWave, choosenEnv);
+        D = Note(2, 9, T, f, choosenWave, choosenEnv);
+        N = Note(2, 11, T, f, choosenWave, choosenEnv);
+        x = [S, R, G, R, G, M, P, M, P, D, P, D, N, D, N, St];
+        y = [St, N, D, N, D, P, D, P, M, P, M, G, R, G, R, S];
+        soundSequence = [x, y];
+        sound(soundSequence, Fs);
+        choosenWave = 3;
+        if choosenEnv == 1
+            choosenEnv = 0;
+        else
+            choosenEnv = 1;
+        end
+        S = Note(2, 0, T, f, choosenWave, choosenEnv);
+       St = Note(3, 0, T, f, choosenWave, choosenEnv);
+        R = Note(2, 2, T, f, choosenWave, choosenEnv);
+        G = Note(2, 4, T, f, choosenWave, choosenEnv);
+        M = Note(2, 6, T, f, choosenWave, choosenEnv);
+        P = Note(2, 7, T, f, choosenWave, choosenEnv);
+        D = Note(2, 9, T, f, choosenWave, choosenEnv);
+        N = Note(2, 11, T, f, choosenWave, choosenEnv);
+        % Concatenate note sequences
+        x = [S, R, G, R, G, M, P, M, P, D, P, D, N, D, N, St];
+        y = [St, N, D, N, D, P, D, P, M, P, M, G, R, G, R, S];
+        soundSequence = [x, y];
+        pause(1);
+        sound(soundSequence, Fs);
+        disp('Playback complete.');
+    else
+        S = Note(2, 0, T, f, choosenWave, choosenEnv);
+       St = Note(3, 0, T, f, choosenWave, choosenEnv);
+        R = Note(2, 2, T, f, choosenWave, choosenEnv);
+        G = Note(2, 4, T, f, choosenWave, choosenEnv);
+        M = Note(2, 6, T, f, choosenWave, choosenEnv);
+        P = Note(2, 7, T, f, choosenWave, choosenEnv);
+        D = Note(2, 9, T, f, choosenWave, choosenEnv);
+        N = Note(2, 11, T, f, choosenWave, choosenEnv);
+        % Concatenate note sequences
+        x = [S, R, G, R, G, M, P, M, P, D, P, D, N, D, N, St];
+        y = [St, N, D, N, D, P, D, P, M, P, M, G, R, G, R, S];
+        soundSequence = [x, y];
+        sound(soundSequence, Fs);
+        disp('Playback complete.');
+    end
 end

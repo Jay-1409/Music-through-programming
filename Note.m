@@ -21,7 +21,9 @@ function tone = Note(s, n, d, f, wave, env)
     elseif wave == 2
         S = waveSawtooth(t,f1);
     elseif wave == 3
-        S = waveSquare(t,f1);
+        S = waveSquare(t,f1)
+    elseif wave == 4
+        S = wave_triangle(t,f1);
     end
     tone = 5*e.*S;
 end
