@@ -1,0 +1,21 @@
+%arc the pitch first increases and the decreases just like an arch 
+%tension - release 
+%inverse arch - just like the actual inverted arch
+%Leap and stepwise movement
+% leap -> [M G G M G G St]
+function [tone, f1] = ctontour(s, n, d, f)
+    if s == 1
+        N = 2 ^ (n / 12);
+    elseif(s == 2)
+            N = 2*2^(n / 12);
+    else
+        N = 4 * 2 ^(n / 12);
+    end
+
+    f1 = f*N;
+    t = 0:1/22050:d;
+    a = Env(t);
+    [a t] = EQ(a, t);
+    S = waveSquare(t, f1);
+    tone = 0.5 * a .* S;
+ end

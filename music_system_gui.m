@@ -23,12 +23,10 @@ function music_system_gui()
 end
 
 function playSound(waveformDropdown, envelopeDropdown)
-    % Parameters for wave generation
-    Fs = 22050; % Sampling frequency
-    f = 250;    % Fundamental frequency (A4 note)
-    T = 0.5;      % Note duration (in seconds)
+    Fs = 22050;
+    f = 250; 
+    T = 0.5;    
 
-    % Determine the selected waveform
     choosenWave = 0;
     switch waveformDropdown.Value
         case 'Sine Wave'
@@ -75,6 +73,7 @@ function playSound(waveformDropdown, envelopeDropdown)
         x = [S, R, G, R, G, M, P, M, P, D, P, D, N, D, N, St];
         y = [St, N, D, N, D, P, D, P, M, P, M, G, R, G, R, S];
         soundSequence = [x, y];
+        plot(soundSequence);
         pause(1);
         sound(soundSequence, Fs);
         disp('Playback complete.');
@@ -106,7 +105,6 @@ function playSound(waveformDropdown, envelopeDropdown)
         P = Note(2, 7, T, f, choosenWave, choosenEnv);
         D = Note(2, 9, T, f, choosenWave, choosenEnv);
         N = Note(2, 11, T, f, choosenWave, choosenEnv);
-        % Concatenate note sequences
         x = [S, R, G, R, G, M, P, M, P, D, P, D, N, D, N, St];
         y = [St, N, D, N, D, P, D, P, M, P, M, G, R, G, R, S];
         soundSequence = [x, y];
@@ -122,7 +120,6 @@ function playSound(waveformDropdown, envelopeDropdown)
         P = Note(2, 7, T, f, choosenWave, choosenEnv);
         D = Note(2, 9, T, f, choosenWave, choosenEnv);
         N = Note(2, 11, T, f, choosenWave, choosenEnv);
-        % Concatenate note sequences
         x = [S, R, G, R, G, M, P, M, P, D, P, D, N, D, N, St];
         y = [St, N, D, N, D, P, D, P, M, P, M, G, R, G, R, S];
         soundSequence = [x, y];

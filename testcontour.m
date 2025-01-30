@@ -1,0 +1,18 @@
+clc;
+clf;
+clear;
+f = 130;
+d = 0.4; d4 = 4*d;
+[S, fs] = contour(2,0,d,f);
+[S4, fs] = contour(2,0,d4,f);
+[R, fr] = contour(2,2,d,f);
+[G, fg] = contour(2,4,d,f);
+[P, fp] = contour(2,7,d,f);
+[D, fd] = contour(2,9,d,f);
+[St, fst] = contour(3,0,d,f);
+[St4, fst] = contour(3,0,d4,f);
+x = [S R G P G G R R G R G R S4];
+f2 = [fs fr fg fp fg fg fr fr fg fr fg fr fs];
+z = [x -x];
+sound(z, 22050);
+stem(f2,'red','lineWidth',2);
