@@ -24,8 +24,8 @@ function tone = Note(s, n, d, f, wave, env)
         S = waveSquare(t,f1)
     elseif wave == 4
         S = wave_triangle(t,f1);
+    elseif wave == 5
+        S = wave_parabola(t,f1);
     end
     tone = 5*e.*S;
 end
-
-
