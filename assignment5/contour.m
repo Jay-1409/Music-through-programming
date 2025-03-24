@@ -3,10 +3,6 @@
 %inverse arch - just like the actual inverted arch
 %Leap and stepwise movement
 % leap -> [M G G M G G St]
-%s -> saptak
-%n -> node number 
-%d -> duration 
-%f -> freqency
 function [tone, f1] = contour(s, n, d, f)
     if s == 1
         N = 2 ^ (n / 12);
@@ -21,7 +17,6 @@ function [tone, f1] = contour(s, n, d, f)
     a = Env_sustain(t);
     [a t] = EQ(a, t);
     S = wave_sitar(t, f1);
-    %plot(S);
     tone = 0.5 * a .* S;
 end
 
